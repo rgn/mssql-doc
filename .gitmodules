@@ -1,0 +1,3 @@
+[submodule ".antora"]
+	path = .antora
+	url = git@github-trivadis:rgn/generator-doc.git
