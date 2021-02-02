@@ -18,7 +18,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build_dev:
+  build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -27,6 +27,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
+          token: ${{ secrets.CROSS_REPOSITORY_PAT }}
           submodules: true
         
       - name: GitHub Script
