@@ -1,0 +1,46 @@
+name: Build Documentation
+
+# Controls when the action will run. 
+on:
+  # run if a new release was created
+  release:
+    types:
+      - created
+  # run if any adoc file was changed on the listed branches during a push/pull request
+  push:
+    branches: [ development, feature-*, feature/*, release-*, release/* ]
+    paths:
+    - '**.adoc'  
+  pull_request:
+    branches: [ development, feature-*, feature/*, release-*, release/* ]
+    paths:
+    - '**.adoc'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build_dev:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+        
+      - name: GitHub Script
+        uses: actions/github-script@v3.1.0
+        with:
+          github-token: ${{secrets.CROSS_REPOSITORY_PAT}}
+          # The script to run
+          script: |
+            github.actions.createWorkflowDispatch({
+              'owner': context.repo.owner,
+              'repo': 'generator-doc',
+              'workflow_id': 'ci.yml',
+              'ref': 'main',
+              'inputs': {
+                'target': ${{ github.event_name }}
+              }
+            });
