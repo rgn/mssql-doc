@@ -1,5 +1,5 @@
 name: mssql-generator
 title: Microsoft SQL Server Generator
-version: 5.5.97
+version: latest
 nav:
 - modules/ROOT/nav.adoc
