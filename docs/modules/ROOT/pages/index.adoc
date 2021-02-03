@@ -1,4 +1,4 @@
-= Welcome to the Microsoft SQL Server Generator (dev) documentation!
+= Welcome to the Microsoft SQL Server Generator documentation!
 
 This is the automatic start page for version *{page-component-version}* of Redshift Generator.
 
