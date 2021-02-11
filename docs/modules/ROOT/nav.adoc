@@ -1,2 +1,3 @@
 * xref:index.adoc[Welcome]
 ** xref:overview.adoc[Overview]
+** xref:configure-stage.adoc[Configure Stage]
