@@ -1,6 +1,3 @@
 #!/usr/bin/env sh
 
-antora antora-playbook.local.yml
-onchange 'docs/**/*.adoc' -- antora antora-playbook.local.yml &
-
-http-server public
+docker run -it --rm -p 8080:8080 -v ${PWD}:/antora tvdgnr/antora /antora/.docker/preview.sh

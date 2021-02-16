@@ -1,7 +1,7 @@
 site:
   title: MSSQL Documentation - local
   url: https://docs.bigenius.info/generators
-  #start_page: mssql-generator::index.adoc
+  start_page: mssql-generator::index.adoc
 asciidoc: 
   attributes: 
     table-caption: ~ 
