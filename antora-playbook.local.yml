@@ -1,0 +1,24 @@
+site:
+  title: MSSQL Documentation - local
+  url: https://docs.bigenius.info/generators
+  #start_page: mssql-generator::index.adoc
+asciidoc: 
+  attributes: 
+    table-caption: ~ 
+  extensions: 
+  - asciidoctor-emoji
+  - asciidoctor-kroki
+output: 
+  clean: true
+  dir: ./public
+  destinations:
+  - provider: fs
+content:
+  sources:
+  - url: /antora
+    start_path: docs
+    branch: HEAD
+ui:
+  bundle:
+    url: https://github.com/rgn/generator-doc-style/releases/download/v1.0-algolia/ui-bundle.zip
+    snapshot: true
