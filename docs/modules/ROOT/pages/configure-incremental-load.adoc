@@ -1,4 +1,5 @@
 # Configure Incremental Load
+Version *{page-component-version}*.
 
 You can configure stage objects to have an **incremental load**.
 
