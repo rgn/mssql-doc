@@ -2,28 +2,18 @@
 
 You can configure stage objects to have an **incremental load**.
 
-For this you need to configure the Custom Property **IncrementalFilterColumn**: uses any field from the source object to load data incrementally (date as increment, number as increment):
+For this you need to configure the Custom Property **IncrementalFilterColumn**: uses a date field from the source object to load data incrementally.
+
+This feature checks the transaction date of the last successful load and loads all rows where the date field is greater than the last load date and less or equal to the current load date.
 
 .IncrementalFilterColumn Custom Property
 image::incremental_load_1.png[IncrementalFilterColumn Custom Property]
 
-Load objects where an *IncrementalFilterColumn* is defined will load all rows where the value of this column is between the previous increment (depending on the load strategy configuration, see below) and the current increment (highest value available in the source).
+If you use an *IncrementalFilterColumn* value, 2 tables will be generated in place of 1, for example:
 
-After the load the current increment will be stored in the the table [RC].[ExecutionLog_Step] in the column [ExecutionIncrement]:
+SA.AWBase_InternetSales_**Incremental**: contain the incremental value used for the load (last load date):
 
-.ExecutionIncrement
-image::incremental_load_2.png[ExecutionIncrement]
+.Incremental table
+image::incremental_load_4.png[Incremental table]
 
-For each stage with an *IncrementalFilterColumn* configured, a new load config row will be added during deployment in the table RC.IncrementalLoadConfig:
-
-.IncrementalLoadConfig
-image::incremental_load_3.png[IncrementalLoadConfig]
-
-And you can configure the load strategy for each stage:
-
-* **LastRun** (default value): using the [ExecutionIncrement] value of the last successful run of this load object.
-** Hint: The load object should only be loaded again after all data of the previous run was successfully stored in a persistent table.
-* **LastExecution**: using the [ExecutionIncrement] value from the last successful and completed execution. Can be restarted after an error in the last execution, however when using the same load object to selectively fill different persistent tables with multiple execution plans you should consider the option LastExecutionPlan.
-LastExecutionPlan: using the [ExecutionIncrement] value from the last successful and completed execution that used the same execution plan. Can be restarted after an error in the last execution of the execution plan, however when using multiple execution plans to fill the same persistent table you should consider the option LastExecution.
-* **Fixed**: using the provided value in the column [OverrideIncrement] for all future executions of the load object.
-* **None**: disables incremental load and does a full load instead.
+SA.AWBase_InternetSales_**RowSource**: as usual, contain the source data to load
