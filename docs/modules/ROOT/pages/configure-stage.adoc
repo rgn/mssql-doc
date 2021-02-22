@@ -1,3 +1,0 @@
-# Configure Stage
-
-This is my very first ASCIIDoc page.
