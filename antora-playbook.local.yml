@@ -10,7 +10,7 @@ asciidoc:
   - asciidoctor-kroki
 output: 
   clean: true
-  dir: ./public
+  dir: ./.public
   destinations:
   - provider: fs
 content:

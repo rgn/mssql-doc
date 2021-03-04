@@ -1,6 +1,4 @@
 #!/usr/bin/env sh
 
-antora antora-playbook.local.yml
-onchange 'docs/**/*.adoc' -- antora antora-playbook.local.yml &
-
-http-server public
+http-server .public &
+onchange --initial --await-write-finish 2000 'docs/**/*.adoc' -- /antora/.docker/build.sh
