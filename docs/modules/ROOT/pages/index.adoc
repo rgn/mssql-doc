@@ -1,6 +1,6 @@
 = Welcome to the Microsoft SQL Server Generator documentation!
 
-This is the automatic start page for version *{page-component-version}*.
+This is the automatic start page for version *{page-component-version}*;
 
 == Page source
 
